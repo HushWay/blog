@@ -1,7 +1,7 @@
 ##########################################
 # 站点配置
 
-baseURL = "https://neverlandway.netlify.app/"
+baseURL = "/"
 title = "聊何生"
 languageCode = "zh-CN"
 hasCJKLanguage = true
