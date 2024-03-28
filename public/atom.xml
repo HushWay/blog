@@ -4,56 +4,16 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">Hugo 主题 MemE</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2024-03-28T20:21:24&#43;08:00</updated>
-    <id>http://localhost:1313/</id>
-    <link rel="alternate" type="text/html" href="http://localhost:1313/" />
-    <link rel="self" type="application/atom&#43;xml" href="http://localhost:1313/atom.xml" />
+    <updated>2024-03-28T23:43:08&#43;08:00</updated>
+    <id>https://example.com/</id>
+    <link rel="alternate" type="text/html" href="https://example.com/" />
+    <link rel="self" type="application/atom&#43;xml" href="https://example.com/atom.xml" />
     <author>
             <name>reuixiy</name>
-            <uri>http://localhost:1313/</uri>
+            <uri>https://example.com/</uri>
             
                 <email>reuixiy@gmail.com</email>
             </author>
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.124.1">Hugo</generator>
-        <entry>
-            <title type="text">Hello World</title>
-            <link rel="alternate" type="text/html" href="http://localhost:1313/posts/hello-world/" />
-            <id>http://localhost:1313/posts/hello-world/</id>
-            <updated>2024-03-28T20:21:23&#43;08:00</updated>
-            <published>2024-03-28T20:02:35&#43;08:00</published>
-            <author>
-                    <name>reuixiy</name>
-                    <uri>https://io-oi.me/</uri>
-                    <email>reuixiy@gmail.com</email>
-                    </author>
-            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights><summary type="html">我要开始写博客啦，这只是一个测试。 曾经，我想成为一个有思想的人。 现在不同了，我只想成……</summary>
-            
-                <content type="html">&lt;p&gt;我要开始写博客啦，这只是一个测试。&lt;/p&gt;
-&lt;p&gt;曾经，我想成为一个有思想的人。&lt;/p&gt;
-&lt;p&gt;现在不同了，我只想成为一个真实的人，热爱生活，热爱生命。&lt;/p&gt;
-&lt;p&gt;所以，我会写下来我的很多想法。&lt;/p&gt;
-&lt;p&gt;曾经，我是一个沉默寡言之人，现在，我想成为涛涛不绝之人。&lt;/p&gt;
-&lt;p&gt;我曾经像个犯人一样，生活对我宣告&lt;a href=&#34;https://zh.wikipedia.org/zh-hans/%E7%B1%B3%E5%85%B0%E8%BE%BE%E8%AD%A6%E5%91%8A&#34;&gt;米兰达警告&lt;/a&gt;：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;你有权保持沉默&lt;/em&gt;。如果你开口说话，那么&lt;em&gt;你所说&lt;/em&gt;的每一句话&lt;em&gt;都将&lt;/em&gt;作为&lt;em&gt;呈堂证供&lt;/em&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;现在，去你妈的，我想。&lt;/p&gt;
-&lt;p&gt;无论我写的是一坨狗屎，还是一块金子，都是我的体验与抒发。&lt;/p&gt;
-&lt;p&gt;在这里，我不需要看别人的脸色说话，也不会被别人打断，提笔就写。&lt;/p&gt;
-&lt;p&gt;先这样吧。&lt;/p&gt;
-</content>
-            
-            
-            
-            
-            
-                
-                    
-                
-                    
-                
-            
-        </entry>
-    
 </feed>
