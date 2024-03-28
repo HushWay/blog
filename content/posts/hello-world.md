@@ -1,7 +1,7 @@
 +++
 title = 'Hello World'
 date = 2024-03-28T20:02:35+08:00
-draft = true
+draft = false
 +++
 
 我要开始写博客啦，这只是一个测试。
