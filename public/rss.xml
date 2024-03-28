@@ -7,7 +7,7 @@
 
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>Hugo 主题 MemE</title>
+        <title>聊何生</title>
         <link>http://localhost:1313/</link>
         <description>MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</description>
         <generator>Hugo 0.124.1 https://gohugo.io/</generator>
@@ -15,18 +15,69 @@
             <language>zh-CN</language>
         
         
-            <managingEditor>reuixiy@gmail.com (reuixiy)</managingEditor>
+            <managingEditor>pseudoway@163.com (way)</managingEditor>
         
         
-            <webMaster>reuixiy@gmail.com (reuixiy)</webMaster>
+            <webMaster>pseudoway@163.com (way)</webMaster>
         
         
-            <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
-        
-        <lastBuildDate>Thu, 28 Mar 2024 23:51:56 &#43;0800</lastBuildDate>
+        <lastBuildDate>Fri, 29 Mar 2024 00:38:39 &#43;0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss&#43;xml" href="http://localhost:1313/rss.xml" />
         
+        
+            <item>
+                <title>你好？世界</title>
+                <link>http://localhost:1313/posts/%E4%BD%A0%E5%A5%BD%E4%B8%96%E7%95%8C/</link>
+                <guid isPermaLink="true">http://localhost:1313/posts/%E4%BD%A0%E5%A5%BD%E4%B8%96%E7%95%8C/</guid>
+                <pubDate>Thu, 28 Mar 2024 20:02:35 &#43;0800</pubDate>
+                
+                    <author>pseudoway@163.com (way)</author>
+                
+                
+                
+                    <description>&lt;p&gt;我要开始写博客啦，这只是一个测试。&lt;/p&gt;
+&lt;p&gt;曾经，我想成为一个有思想的人。&lt;/p&gt;
+&lt;p&gt;现在不同了，我只想成为一个真实的人，热爱生活，热爱生命。&lt;/p&gt;
+&lt;p&gt;所以，我会写下来我的很多想法。&lt;/p&gt;
+&lt;p&gt;曾经，我是一个沉默寡言之人，现在，我想成为涛涛不绝之人。&lt;/p&gt;
+&lt;p&gt;我曾经像个犯人一样，生活对我宣告&lt;a href=&#34;https://zh.wikipedia.org/zh-hans/%E7%B1%B3%E5%85%B0%E8%BE%BE%E8%AD%A6%E5%91%8A&#34;&gt;米兰达警告&lt;/a&gt;：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;你有权保持沉默&lt;/em&gt;。如果你开口说话，那么&lt;em&gt;你所说&lt;/em&gt;的每一句话&lt;em&gt;都将&lt;/em&gt;作为&lt;em&gt;呈堂证供&lt;/em&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;现在，去你妈的，我想。&lt;/p&gt;
+&lt;p&gt;无论我写的是一坨狗屎，还是一块金子，都是我的体验与抒发。&lt;/p&gt;
+&lt;p&gt;在这里，我不需要看别人的脸色说话，也不会被别人打断，提笔就写。&lt;/p&gt;
+&lt;p&gt;先这样吧。&lt;/p&gt;
+</description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="http://localhost:1313/categories/%E6%B5%8B%E8%AF%95%E5%88%86%E7%B1%BB/">测试分类</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="http://localhost:1313/tags/%E6%B5%8B%E8%AF%95tag/">测试tag</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
     </channel>
 </rss>
