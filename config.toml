@@ -657,12 +657,12 @@ uglyURLs = false
     # 说明：https://github.com/gitalk/gitalk
 
     ## Giscus
-    enableGiscus = false
-    giscusRepo = "[ENTER repo/you/want HERE]"
-    giscusRepoId = "[ENTER REPO ID HERE]"
-    giscusCategory = "[ENTER CATEGORY NAME HERE]"
-    giscusCategoryId = "[ENTER CATEGORY ID HERE]"
-    giscusMapping = "pathname"
+    enableGiscus = true
+    giscusRepo = ["HushWay/blog"]
+    giscusRepoId = ["R_kgDOLmwrqQ"]
+    giscusCategory = ["Announcements"]
+    giscusCategoryId = ["DIC_kwDOLmwrqc4CeUs5"]
+    giscusMapping = "title"
     giscusStrict = false
     giscusReactionsEnabled = true
     giscusEmitMetaData = false
