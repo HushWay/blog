@@ -1,6 +1,0 @@
-[[socials]]
-    id = "rss"
-    url = "/rss.xml"
-    icon = "rss"
-    title = "RSS"
-    weight = 1

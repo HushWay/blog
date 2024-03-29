@@ -1,12 +1,12 @@
 ##########################################
 # 站点配置
 
-baseURL = "https://neverlandway.netlify.app/"
+baseURL = "https://liaohesheng.top"
 title = "我闻我思，姑妄听之"
 languageCode = "zh-CN"
 hasCJKLanguage = true
 # 版权信息（支持 Markdown）
-# copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)"
+# copyright = "在保留本文作者及本文連結的前提下，非商業用途隨意轉載分享。"
 
 # 主题选择
 theme = "meme"
@@ -31,7 +31,7 @@ enableEmoji = false
 footnoteReturnLinkContents = "↩"
 
 # 是否启用 Git 版本信息
-enableGitInfo = false
+enableGitInfo = true
 
 # 是否生成 robots.txt 文件
 enableRobotsTXT = true
@@ -104,7 +104,7 @@ uglyURLs = false
     # 头像
     avatar = "https://github.com/HushWay/Typora-img/blob/main/img/%E6%AF%94%E5%B0%943.jpg"
     # 网站（默认值：baseURL）
-    website = "https://neverlandway.netlify.app/"
+    website = "https://liaohesheng.top/"
     # 推特
     # twitter = "reuixiy"
 
@@ -190,47 +190,20 @@ uglyURLs = false
 [menu]
     ## 菜单栏
     [[menu.main]]
-        pageref = "/"
-        name = "首页"
-        weight = 1
-        pre = "internal"
-        post = "home"
-    [[menu.main]]
-        pageref = "/posts/"
-        name = "文章"
-        weight = 2
-        pre = "internal"
-        post = "archive"
-    [[menu.main]]
-        pageref = "/categories/"
-        name = "分类"
-        weight = 3
-        pre = "internal"
-        post = "th"
-    [[menu.main]]
-        pageref = "/tags/"
-        name = "标签"
-        weight = 4
-        pre = "internal"
-        post = "tags"
+    pageref = "/posts/"
+    name = "博客"
+    weight = 1
+    pre = "internal"
+
     [[menu.main]]
         pageref = "/about/"
         name = "关于"
-        weight = 5
+        weight = 2
         pre = "internal"
-        post = "user-circle"
-    [[menu.main]]
-        weight = 6
-        identifier = "theme-switcher"
-    [[menu.main]]
-        weight = 7
-        identifier = "lang-switcher"
-#    [[menu.main]]
-#        weight = 8
-#        identifier = "search"
-#        post = "search"
 
-
+    [[menu.main]]
+       weight = 3
+       identifier = "theme-switcher"
 
 ##########################################
 # 主题配置
@@ -278,7 +251,7 @@ uglyURLs = false
     # 如果否，则会使用你的站点标题作为默认值，并
     # 以文字的形式显示，下方可配置字号和字色。字
     # 体请到底部的字体部分配置。单位：em。
-    siteBrandFontSize = 1
+    siteBrandFontSize = 1.5
     siteBrandFontColor = "var(--color-contrast-high)"
 
 
@@ -1137,7 +1110,7 @@ uglyURLs = false
     # 文章的 Git 版本信息
 
     # 是否开启
-    enablePostGitInfo = false
+    enablePostGitInfo = true
 
     # 是否显示（全局设置）
     displayPostGitInfo = false
@@ -1145,10 +1118,10 @@ uglyURLs = false
     #      的优先级高于此处
 
     # 仓库地址
-    repoURL = ""
+    repoURL = "https://github.com/HushWay/blog"
     # 编辑地址
-    repoEditURL = ""
-    repoEditURLSuffix = ""
+    repoEditURL = "https://github.com/HushWay/blog/tree/main"
+    repoEditURLSuffix = "?plain=1"
 
     # Git 的图标
     gitIcon = "code-branch"
@@ -1246,14 +1219,14 @@ uglyURLs = false
     # 极简页脚
 
     # 是否开启
-    enableMinimalFooter = false
-    enableVerticalBarStructure = false
+    enableMinimalFooter = true
+    enableVerticalBarStructure = true
     # 说明：如果开启此项，显示在右边的部类或分区
     #      将会包含全部的第一级部类或分区，并且
     #      以竖线（|）分隔开来。
 
     # 是否开启关于页面的极简页脚
-    enableAboutPageMinimalFooter = false
+    enableAboutPageMinimalFooter = true
 
 
     ######################################
@@ -1282,14 +1255,14 @@ uglyURLs = false
     enableFooter = true
 
     # 是否显示
-    displayFooter = true
+    displayFooter = false
 
     # 是否在首页显示
     displayFooterInHome = true
 
     displayCopyleftSymbol = false
     # 是否显示版权符号（©）
-    displayCopyrightSymbol = true
+    displayCopyrightSymbol = false
 
     # 是否显示站点的创建年份
     displaySiteCreatedYear = true
@@ -1323,7 +1296,7 @@ uglyURLs = false
     #      https://busuanzi.ibruce.info/
 
     # 社交链接
-    enableSocials = true
+    enableSocials = false
     # 说明：见 data/Socials.toml
 
 

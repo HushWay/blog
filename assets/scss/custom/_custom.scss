@@ -1,0 +1,296 @@
+.main {
+    padding-bottom: 5em;
+}
+
+.post-body {
+    margin-top: 4em !important;
+}
+
+.list-title,
+.term-title,
+.list-year,
+.list-month {
+    font-family: 'glyph-correction', 'Cinzel Decorative', 'Noto Serif TC', 'Noto Serif SC', serif;
+}
+
+.brand {
+    font-family: 'Lato', sans-serif;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.nav {
+    font-size: 1.5em;
+    margin-top: 0em;
+}
+
+.home .poetry {
+    padding: 10em 1em;
+}
+
+.life {
+    color: #f37055;
+}
+
+.tech {
+    color: #a166ab;
+}
+
+.about {
+    color: #07b39b;
+}
+
+.menu-item {
+
+    .life,
+    .tech,
+    .about {
+        display: none;
+    }
+}
+
+[data-theme="dark"] {
+
+    .theme-icon-dark,
+    #lang-switcher,
+    .footer-icon {
+        opacity: 0.75;
+    }
+}
+
+#lang-switcher {
+    margin-left: 0.3em;
+}
+
+@media (max-width: $maxWidth) {
+    .nav {
+        margin: 2em 0;
+    }
+
+    .menu-item {
+
+        .life,
+        .tech,
+        .about {
+            display: inline-block;
+        }
+    }
+
+    .menu-item-name {
+        font-size: 80%;
+    }
+
+    :root {
+        .theme-icon-light {
+            display: inline;
+        }
+    }
+
+    [data-theme="dark"] {
+        .theme-icon-dark {
+            display: inline !important;
+        }
+    }
+
+    #lang-switcher {
+        margin: 0;
+    }
+}
+
+.nav-toggle {
+    transform: translateY(0.4em);
+}
+
+.footer {
+    letter-spacing: -0.1em;
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.viva-la-vida {
+    margin-top: 50px;
+    text-align: center;
+    font-family: 'Cinzel Decorative', serif !important;
+    background-image: linear-gradient(90deg, #f37055 0, #ef4e7b 40%, #f37055 45%, #a166ab 50%, #f37055 55%, #ef4e7b 60%, #f37055 100%);
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.minimal-footer-about {
+    font-variant: small-caps;
+}
+
+hr.coldplay {
+    background-image: url(../images/rainbow.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 3px;
+
+    &::after {
+        content: none;
+    }
+}
+
+.coldplay-footer {
+    text-align: right;
+    font-size: 80%;
+}
+
+.list-coldplay {
+    hr {
+        border: none;
+        margin: 2.427em 0 1.5em;
+    }
+
+    img {
+        display: block;
+        margin: 2em auto;
+        max-width: 100%;
+    }
+
+    ul {
+        padding-left: 2em;
+        line-height: $lineHeight;
+        list-style-type: disc;
+    }
+}
+
+
+// https://github.com/TypeNetwork/Amstelvar
+
+@font-face {
+    font-family: 'Amstelvar';
+    font-display: swap;
+    src: url('#{$baseRelURL}/fonts/Amstelvar-Roman-VF.woff2') format('woff2-variations'),
+    url('#{$baseRelURL}/fonts/Amstelvar-Roman-VF.woff2') format('woff2');
+    font-weight: 100 900;
+    font-stretch: 50% 125%;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Amstelvar';
+    font-display: swap;
+    src: url('#{$baseRelURL}/fonts/Amstelvar-Italic-VF.woff2') format('woff2-variations'),
+    url('#{$baseRelURL}/fonts/Amstelvar-Italic-VF.woff2') format("woff2");
+    font-weight: 100 900;
+    font-stretch: 50% 125%;
+    font-style: italic;
+}
+
+:root {
+    --text-wdth: 90;
+    --text-opsz: 40;
+    --text-YTLC: 460;
+}
+
+body {
+    font-variation-settings:
+        'wdth' var(--text-wdth),
+        'opsz' var(--text-opsz),
+        'YTLC' var(--text-YTLC);
+}
+
+html:lang(en) body {
+    font-variation-settings: normal;
+}
+
+article:lang(en) p {
+    --font-size: 18px;
+    --line-height: 1.618;
+
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    font-family: 'Amstelvar', 'Noto Serif TC', 'Noto Serif SC', serif;
+    font-variation-settings: normal;
+}
+
+article:lang(en) .drop-cap {
+    font-size: 3em;
+    margin-right: 16px;
+    margin-top: 15px !important;
+    line-height: calc(var(--font-size) * var(--line-height));
+}
+
+.post-title {
+    font-family: 'glyph-correction', 'Amstelvar', 'Noto Serif TC', 'Noto Serif SC', serif;
+    font-variation-settings:
+        'wght' 550,
+        'opsz' 60,
+        'YOPQ' 90;
+}
+
+.list-item-time {
+    font-feature-settings: 'tnum';
+}
+
+
+blockquote.quote {
+    position: relative;
+    margin: 2em auto !important;
+    padding-left: 3em;
+    color: inherit;
+    border: none;
+
+    p {
+        text-indent: 0 !important;
+    }
+
+    &::before {
+        position: absolute;
+        left: 0;
+        content: '“';
+        font-size: 3em;
+        font-weight: bold;
+        line-height: 1;
+    }
+
+    &.poetry {
+        display: table;
+        padding: 0;
+
+        &::before {
+            left: -1em;
+        }
+
+        p {
+            margin: 0 0 1em;
+        }
+
+        p:last-child {
+            margin: 0;
+        }
+    }
+
+    &.en {
+        p {
+            line-height: 1.618;
+            text-align: left;
+            font-family: 'Amstelvar', 'Noto Serif TC', 'Noto Serif SC', serif;
+            font-variation-settings: normal;
+        }
+    }
+
+    &.italic {
+        p {
+            font-style: italic;
+        }
+    }
+}
+
+@media (max-width: $maxWidth) {
+    blockquote.quote {
+        &.poetry {
+            padding-left: 3em;
+
+            &::before {
+                left: 0;
+            }
+        }
+    }
+}
