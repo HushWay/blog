@@ -1,8 +1,8 @@
 ##########################################
 # 站点配置
 
-baseURL = "/"
-title = "聊何生"
+baseURL = "https://neverlandway.netlify.app/"
+title = "我闻我思，姑妄听之"
 languageCode = "zh-CN"
 hasCJKLanguage = true
 # 版权信息（支持 Markdown）
@@ -12,7 +12,7 @@ hasCJKLanguage = true
 theme = "meme"
 
 # `hugo new` 新建文章自动打开的文本编辑器
-newContentEditor = ""
+newContentEditor = "C:\\Users\\way\\scoop\\apps\\typora\\current\\Typora.exe"
 
 # i18n
 defaultContentLanguage = "zh-cn"
@@ -96,7 +96,7 @@ uglyURLs = false
 # 作者信息
 [author]
     # 名字
-    name = "way"
+    name = "聊何生"
     # 邮箱
     email = "pseudoway@163.com"
     # 座右铭或简介
@@ -339,16 +339,16 @@ uglyURLs = false
     # 站点信息
 
     # 站点的 LOGO
-    siteLogo = "/icons/apple-touch-icon.png"
+    siteLogo = "/icons/bill.jpg"
     # 说明：用于 JSON-LD、Open Graph
 
     # 站点的描述
-    siteDescription = "MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。"
+    siteDescription = "我闻我思，姑妄听之"
     # 说明：用于 HTML 的头部元数据、JSON-LD、
     #      Open Graph、Atom、RSS
 
     # 站点的创建时间
-    siteCreatedTime = "1969-07-20T20:17:43+00:00"
+    siteCreatedTime = "2024-03-28T16:00:00+00:00"
     # 注意：请保持此格式，更改数字
 
     # 站点的推特帐号
@@ -1479,3 +1479,16 @@ uglyURLs = false
         valine = "/npm/valine@1.4.14/dist/Valine.min.js"
         busuanzi = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
         utterances = "https://utteranc.es/client.js"
+
+[security]
+  enableInlineShortcodes = false
+  [security.exec]
+    allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$', '^pandoc$', '^nvim$', 'Typora']
+    osEnv = ['(?i)^(PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)$']
+
+  [security.funcs]
+    getenv = ['^HUGO_']
+
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']
