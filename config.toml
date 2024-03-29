@@ -658,10 +658,10 @@ uglyURLs = false
 
     ## Giscus
     enableGiscus = true
-    giscusRepo = ["HushWay/blog"]
-    giscusRepoId = ["R_kgDOLmwrqQ"]
-    giscusCategory = ["Announcements"]
-    giscusCategoryId = ["DIC_kwDOLmwrqc4CeUs5"]
+    giscusRepo = "[HushWay/blog]"
+    giscusRepoId = "[R_kgDOLmwrqQ]"
+    giscusCategory = "[Announcements]"
+    giscusCategoryId = "[DIC_kwDOLmwrqc4CeUs5]"
     giscusMapping = "title"
     giscusStrict = false
     giscusReactionsEnabled = true
