@@ -41,7 +41,7 @@ paginate = 5
 
 # URL 相关
 disablePathToLower = false
-relativeURLs = false
+relativeURLs = true
 uglyURLs = false
 
 # URL 结构
@@ -104,7 +104,7 @@ uglyURLs = false
     # 头像
     avatar = "https://github.com/HushWay/Typora-img/blob/main/img/%E6%AF%94%E5%B0%943.jpg"
     # 网站（默认值：baseURL）
-    website = "https://io-oi.me/"
+    website = "https://neverlandway.netlify.app/"
     # 推特
     # twitter = "reuixiy"
 
