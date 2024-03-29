@@ -781,7 +781,7 @@ uglyURLs = false
     #      首页布局有效
 
     # 日期格式
-    postMetaDateFormat = "2006.1.2"
+    postMetaDateFormat = "2006-1-2"
     # 注意：请遵循格式 https://gohugo.io/functions/format/
 
     # 是否显示发布时间
