@@ -196,13 +196,19 @@ uglyURLs = false
     pre = "internal"
 
     [[menu.main]]
+    pageref = "/tech/"
+    name = "技术"
+    weight = 2
+    pre = "internal"
+
+    [[menu.main]]
         pageref = "/about/"
         name = "关于"
-        weight = 2
+        weight = 3
         pre = "internal"
 
     [[menu.main]]
-       weight = 3
+       weight = 4
        identifier = "theme-switcher"
 
 ##########################################
