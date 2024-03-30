@@ -1262,7 +1262,7 @@ uglyURLs = false
     enableFooter = true
 
     # 是否显示
-    displayFooter = false
+    displayFooter = true
 
     # 是否在首页显示
     displayFooterInHome = true
