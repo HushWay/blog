@@ -257,7 +257,7 @@ uglyURLs = false
     # 如果否，则会使用你的站点标题作为默认值，并
     # 以文字的形式显示，下方可配置字号和字色。字
     # 体请到底部的字体部分配置。单位：em。
-    siteBrandFontSize = 1.5
+    siteBrandFontSize = 2
     siteBrandFontColor = "var(--color-contrast-high)"
 
 
