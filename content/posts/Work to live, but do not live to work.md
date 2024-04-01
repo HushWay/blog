@@ -1,5 +1,5 @@
 +++
-title = 'Eat to Live, but Do Not Live to Eat'
+title = 'Work to Live, but Do Not Live to Work'
 date = 2024-03-31T15:46:08+08:00
 draft = false
 +++
@@ -27,5 +27,7 @@ draft = false
 不过就算我想留在普通的地方，还是需要在读博期间存在成果才有可能。所以，我还是需要平时多多努力，少摸鱼，勤奋干活，勤于思考。
 
 就这样，这是我目前的想法，就像下面这张图里面的人一样，我只是想做一个普通人，我不需要多成功，多努力。如果你很厉害，我可以为你鼓掌，但是，我先不陪你们比赛了，哈哈。
+
+PS: 情况有变，我想出国，具体原因是我发现国内的环境实在太差劲了，可能实现不了我的愿望。。。
 
 ![img](https://raw.githubusercontent.com/HushWay/Typora-img/main/img/v2-14fdbf2cb6d874aa4e70dd25484295bc_720w.jpg)
