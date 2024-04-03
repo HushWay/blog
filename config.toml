@@ -202,6 +202,12 @@ uglyURLs = false
     pre = "internal"
 
     [[menu.main]]
+    pageref = "/principles/"
+    name = "原则"
+    weight = 3
+    pre = "internal"
+
+    [[menu.main]]
         pageref = "/about/"
         name = "关于"
         weight = 3
