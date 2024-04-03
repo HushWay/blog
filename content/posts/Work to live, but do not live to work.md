@@ -1,7 +1,7 @@
 +++
 title = 'Work to Live, but Do Not Live to Work'
 date = 2024-03-31T15:46:08+08:00
-draft = false
+draft = true
 +++
 
 今天闲聊了很久，中间有说过我其实不太想去高校，我觉得没有意思、没有价值。
