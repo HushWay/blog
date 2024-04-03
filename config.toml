@@ -208,10 +208,10 @@ uglyURLs = false
     pre = "internal"
 
     [[menu.main]]
-        pageref = "/about/"
-        name = "关于"
-        weight = 3
-        pre = "internal"
+    pageref = "/about/"
+    name = "关于"
+    weight = 4
+    pre = "internal"
 
     [[menu.main]]
        weight = 4
