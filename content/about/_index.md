@@ -12,7 +12,7 @@ draft = false
     }
 
     body {
-        /* background: #16171d; */
+        /* background: url(house.jpg); */
         background: -webkit-gradient(linear, 0% 0%, 0%, 100%, from(rgba(13, 52, 58, 1)), to (#000000));
         background: -moz-linear-gradient(top, rgba(13, 52, 58, 1) 0%, rgba(0, 0, 0, 1) 100%);
         overflow: hidden;
@@ -23,13 +23,13 @@ draft = false
 background:-webkit-gradient(linear, 0% 0%, 0%, 100%, from(rgba(13,52,58,1)), to (rgba(255,255,255,0.6)));
 background:-moz-linear-gradient(top, rgba(13,52,58,1) 0%, rgba(255,255,255,0.6) 100%);
 */
-        background: #FFFFFF;
+        background: #a2a2a2;
         width: 1px;
         height: 89px;
         position: absolute;
         bottom: 200px;
-        -webkit-animation: fall .63s linear infinite;
-        -moz-animation: fall .63s linear infinite;
+        -webkit-animation: fall 0.5s linear infinite;
+        -moz-animation: fall 0.5s linear infinite;
     }
 
     @-webkit-keyframes fall {
@@ -56,16 +56,16 @@ background:-moz-linear-gradient(top, rgba(13,52,58,1) 0%, rgba(255,255,255,0.6) 
     }
 
     function createRain() {
-        for (i = 0; i < nbDrop; i++) {
+        var dropLeft = randRange(0, 3000);
+        var dropTop = randRange(-1000, 1000);
+        $('.rain').append('<div class="drop"></div>');
+        $('.drop:last-child').css('left', dropLeft);
+        $('.drop:last-child').css('top', dropTop);
+    }
 
-            var dropLeft = randRange(0, 3000);
-            var dropTop = randRange(-1000, 1000);
-            $('.rain').append('<div class="drop" id="drop' + i + '"></div>');
-            $('#drop' + i).css('left', dropLeft);
-            $('#drop' + i).css('top', dropTop);
-        }
-    }   
-
+    for (i = 0; i < nbDrop; i++) {
+        setTimeout(createRain, i * 10); // 每隔10毫秒添加一个雨滴
+    }
 </script>
 
 <body onload="createRain()">
