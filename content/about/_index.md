@@ -15,7 +15,7 @@ draft = false
         /* background: url(house.jpg); */
         background: -webkit-gradient(linear, 0% 0%, 0%, 100%, from(rgba(13, 52, 58, 1)), to (#000000));
         background: -moz-linear-gradient(top, rgba(13, 52, 58, 1) 0%, rgba(0, 0, 0, 1) 100%);
-        overflow: hidden;
+        overflow-x: hidden;
     }
 
     .drop {
@@ -57,19 +57,18 @@ background:-moz-linear-gradient(top, rgba(13,52,58,1) 0%, rgba(255,255,255,0.6) 
 
     function createRain() {
         var dropLeft = randRange(0, 3000);
-        var dropTop = randRange(-1000, 1000);
+        var dropTop = randRange(0, 0);
         $('.rain').append('<div class="drop"></div>');
         $('.drop:last-child').css('left', dropLeft);
         $('.drop:last-child').css('top', dropTop);
     }
 
     for (i = 0; i < nbDrop; i++) {
-        setTimeout(createRain, i * 10); // 每隔10毫秒添加一个雨滴
+        setTimeout(createRain, i * 100); // 每隔10毫秒添加一个雨滴
     }
 </script>
 
-<body onload="createRain()">
-    <section id="rain" class="rain">
+<section id="rain" class="rain" onload="createRain()">
 你好鸭！你是怎么找到这儿哒？
 
 这是我在森林中修建的属于我的小木屋
@@ -91,9 +90,8 @@ background:-moz-linear-gradient(top, rgba(13,52,58,1) 0%, rgba(255,255,255,0.6) 
 ......
 
 哦，雨停了，你要走了？没关系，不用担心我，还有一只猫陪着我呢！
-    </section>
-</body>
 
-
+<script src="https://giscus.app/client.js" data-repo="HushWay/blog" data-repo-id="R_kgDOLmwrqQ" data-category="Announcements" data-category-id="DIC_kwDOLmwrqc4CeUs5" data-mapping="title" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="top" data-theme="light" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async=""></script>
+</section>
 
 
