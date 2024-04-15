@@ -2,7 +2,7 @@
 # 站点配置
 
 baseURL = "https://liaohesheng.top"
-title = "我闻我思，姑妄听之"
+title = "虚室生白，吉祥止止"
 languageCode = "zh-CN"
 hasCJKLanguage = true
 # 版权信息（支持 Markdown）
