@@ -9,6 +9,11 @@ draft = false
 
 好消息！好消息！OpenAI推出了开源自动语音识别 (ASR) 模型 `Whisper`，我们可以自己搭建本地语音转文字大模型，准确率嘎嘎的，不要钱，不吃GPU（没GPU速度会慢点）。走过路过不要错过，需要的小伙伴搬来小凳子，容我慢慢道来。
 
+效果展示（tadaaaa！）：
+
+
+![image-20240513225204354](https://raw.githubusercontent.com/HushWay/Typora-img/main/img/image-20240513225204354.png)
+
 ## 环境
 
 > windows 10 CMD 测试OK
@@ -40,13 +45,3 @@ draft = false
    chcp 65001
 	D:\whisper-cpp\1.5.4\main.exe -f .\output.wav -m D:\models\ggml-	medium.bin -l auto --prompt "以下是普通话的句子" -otxt
 	```
-
-4. 效果展示（tadaaaa！）：
-
-
-![image-20240513225204354](https://raw.githubusercontent.com/HushWay/Typora-img/main/img/image-20240513225204354.png)
-
-
-
-
-```
