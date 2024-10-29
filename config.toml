@@ -213,11 +213,11 @@ uglyURLs = false
     weight = 4
     pre = "internal"
 
-#    [[menu.main]]
-#    pageref = "/resume/"
-#    name = "简历"
-#    weight = 5
-#    pre = "internal"
+    [[menu.main]]
+    url = "/resume/刘威-哈尔滨医科大学-生物信息学博士.pdf"
+    name = "简历"
+    weight = 5
+    pre = "internal"
 
     [[menu.main]]
     weight = 6
