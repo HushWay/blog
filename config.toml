@@ -2,7 +2,7 @@
 # 站点配置
 
 baseURL = "https://liaohesheng.top"
-title = "虚室生白，吉祥止止"
+title = ""
 languageCode = "zh-CN"
 hasCJKLanguage = true
 # 版权信息（支持 Markdown）
@@ -96,7 +96,7 @@ uglyURLs = false
 # 作者信息
 [author]
     # 名字
-    name = "聊何生"
+    name = "刘威"
     # 邮箱
     email = "pseudoway@163.com"
     # 座右铭或简介
@@ -201,11 +201,11 @@ uglyURLs = false
     weight = 2
     pre = "internal"
 
-    [[menu.main]]
-    pageref = "/principles/"
-    name = "原则"
-    weight = 3
-    pre = "internal"
+#    [[menu.main]]
+#    pageref = "/principles/"
+#    name = "原则"
+#    weight = 3
+#    pre = "internal"
 
     [[menu.main]]
     pageref = "/about/"
@@ -213,9 +213,15 @@ uglyURLs = false
     weight = 4
     pre = "internal"
 
+#    [[menu.main]]
+#    pageref = "/resume/"
+#    name = "简历"
+#    weight = 5
+#    pre = "internal"
+
     [[menu.main]]
-       weight = 5
-       identifier = "theme-switcher"
+    weight = 6
+    identifier = "theme-switcher"
 
 ##########################################
 # 主题配置
