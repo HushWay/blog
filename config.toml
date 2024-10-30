@@ -2,7 +2,7 @@
 # 站点配置
 
 baseURL = "https://liaohesheng.top"
-title = ""
+title = "安澜"
 languageCode = "zh-CN"
 hasCJKLanguage = true
 # 版权信息（支持 Markdown）
@@ -1315,7 +1315,7 @@ uglyURLs = false
     #      https://busuanzi.ibruce.info/
 
     # 社交链接
-    enableSocials = false
+    enableSocials = true
     # 说明：见 data/Socials.toml
 
 
