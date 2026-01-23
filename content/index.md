@@ -1,4 +1,4 @@
 ---
-title: Welcome to Quartz
+title: Welcome!
 ---
-欢迎来到我的，额，这叫什么来着，花园？
+欢迎来到世界的角落！
