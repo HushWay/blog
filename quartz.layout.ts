@@ -10,16 +10,16 @@ export const sharedPageComponents: SharedLayout = {
       provider: 'giscus',
       options: {
         repo: 'HushWay/blog',
-        repoId: 'R_kgDOQ8xrjA', 
+        repoId: 'R_kgDOQ8xrjA',
         category: 'Announcements',
         categoryId: 'DIC_kwDOQ8xrjM4C1JYZ',
-        mapping: 'pathname', 
+        mapping: 'pathname',
         strict: '0',
         reactionsEnabled: '1',
         inputPosition: 'top',
       }
     }),
-],
+  ],
   footer: Component.Footer({
     links: {
       // GitHub: "https://github.com/jackyzha0/quartz",
@@ -52,7 +52,12 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      title: "博客",
+      folderDefaultState: "open",
+      folderClickBehavior: "link",
+      useSavedState: false,
+    }),
   ],
   right: [
     Component.TableOfContents()
