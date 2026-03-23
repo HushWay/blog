@@ -14,7 +14,7 @@ export const sharedPageComponents: SharedLayout = {
         category: 'Announcements',
         categoryId: 'DIC_kwDOQ8xrjM4C1JYZ',
         mapping: 'title',
-        // strict: '0',
+        strict: false,
         reactionsEnabled: '1',
         inputPosition: 'top',
       }
