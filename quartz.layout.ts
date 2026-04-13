@@ -1,5 +1,33 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { FileTrieNode } from "./quartz/util/fileTrie"
+
+const sortByPublishedDateAsc = (a: FileTrieNode, b: FileTrieNode) => {
+  if (a.isFolder !== b.isFolder) {
+    return a.isFolder ? -1 : 1
+  }
+
+  if (a.isFolder && b.isFolder) {
+    return a.displayName.localeCompare(b.displayName, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    })
+  }
+
+  // 文件按发表时间正序
+  const aTime = a.data?.date ? new Date(a.data.date).getTime() : Number.NEGATIVE_INFINITY
+  const bTime = b.data?.date ? new Date(b.data.date).getTime() : Number.NEGATIVE_INFINITY
+  const timeDiff = aTime - bTime
+  if (timeDiff !== 0) {
+    return timeDiff
+  }
+
+  // 时间相同或缺失时，按名称稳定排序
+  return a.displayName.localeCompare(b.displayName, undefined, {
+    numeric: true,
+    sensitivity: "base",
+  })
+}
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -15,7 +43,7 @@ export const sharedPageComponents: SharedLayout = {
         categoryId: 'DIC_kwDOQ8xrjM4C1JYZ',
         mapping: 'title',
         strict: false,
-        reactionsEnabled: '1',
+        reactionsEnabled: true,
         inputPosition: 'top',
       }
     }),
@@ -57,6 +85,7 @@ export const defaultContentPageLayout: PageLayout = {
       folderDefaultState: "open",
       folderClickBehavior: "link",
       useSavedState: false,
+      sortFn: sortByPublishedDateAsc,
     }),
   ],
   right: [
@@ -82,7 +111,9 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer({
+      sortFn: sortByPublishedDateAsc,
+    }),
   ],
   right: [],
 }
