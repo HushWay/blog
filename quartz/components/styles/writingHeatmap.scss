@@ -1,0 +1,155 @@
+.writing-heatmap {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--light) 86%, var(--highlight));
+
+  &__header,
+  &__summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  &__header {
+    margin-bottom: 1.25rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+  }
+
+  p {
+    margin: 0.35rem 0 0;
+    color: var(--gray);
+  }
+
+  &__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    font-size: 0.85rem;
+    color: var(--gray);
+
+    span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      white-space: nowrap;
+    }
+  }
+
+  &__dot,
+  &__cell {
+    display: inline-block;
+    width: 0.8rem;
+    height: 0.8rem;
+    border-radius: 3px;
+    box-sizing: border-box;
+  }
+
+  &__dot--done,
+  &__cell--done {
+    background: var(--tertiary);
+  }
+
+  &__dot--missed,
+  &__cell--missed {
+    background: color-mix(in srgb, var(--lightgray) 72%, var(--light));
+    border: 1px solid var(--lightgray);
+  }
+
+  &__dot--future,
+  &__cell--future {
+    background: transparent;
+    border: 1px dashed var(--gray);
+  }
+
+  &__year + &__year {
+    margin-top: 1.35rem;
+    padding-top: 1.35rem;
+    border-top: 1px solid var(--lightgray);
+  }
+
+  &__summary {
+    margin-bottom: 0.8rem;
+    color: var(--gray);
+    font-size: 0.9rem;
+
+    strong {
+      color: var(--darkgray);
+      font-size: 1rem;
+    }
+  }
+
+  &__months {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(2.2rem, 1fr));
+    gap: 0.5rem;
+  }
+
+  &__month-label {
+    margin-bottom: 0.35rem;
+    color: var(--gray);
+    font-size: 0.75rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  &__cells {
+    display: grid;
+    grid-template-columns: repeat(2, 0.9rem);
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  &__cell {
+    width: 0.9rem;
+    height: 0.9rem;
+    color: var(--light);
+    font-size: 0.58rem;
+    font-weight: 700;
+    line-height: 0.9rem;
+    text-align: center;
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--tertiary) 28%, transparent);
+    }
+  }
+
+  @media all and (max-width: 800px) {
+    &__header,
+    &__summary {
+      display: block;
+    }
+
+    &__legend {
+      margin-top: 0.85rem;
+    }
+
+    &__summary span {
+      display: block;
+      margin-top: 0.25rem;
+    }
+
+    &__months {
+      grid-template-columns: repeat(6, minmax(2.4rem, 1fr));
+      row-gap: 0.85rem;
+    }
+  }
+
+  @media all and (max-width: 420px) {
+    padding: 0.85rem;
+
+    &__months {
+      grid-template-columns: repeat(4, minmax(2.4rem, 1fr));
+    }
+  }
+}
