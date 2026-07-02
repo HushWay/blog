@@ -83,24 +83,42 @@
     clearPhotoWallSize(item);
     item.classList.add(`${photoWallSizeClassPrefix}${size}`);
   }
+  function normalizePhotoWallSize(value) {
+    return value && photoWallSizeNames.has(value) ? value : void 0;
+  }
+  function photoWallSizeFromText(value) {
+    const match = value == null ? void 0 : value.match(/(?:^|\s)\|?([123]x[123])\s*$/);
+    return normalizePhotoWallSize(match == null ? void 0 : match[1]);
+  }
+  function stripPhotoWallSizeFromImage(img) {
+    const size = photoWallSizeFromText(img.alt) || photoWallSizeFromText(img.title);
+    if (!size) return void 0;
+    const markerPattern = /\s*\|?[123]x[123]\s*$/;
+    img.alt = img.alt.replace(markerPattern, "").trim();
+    img.title = img.title.replace(markerPattern, "").trim();
+    return size;
+  }
   function explicitPhotoWallSize(item) {
     var _a;
-    const value = item.dataset.size || ((_a = item.querySelector("[data-size]")) == null ? void 0 : _a.dataset.size);
-    return value && photoWallSizeNames.has(value) ? value : void 0;
+    const manualSize = normalizePhotoWallSize(item.dataset.size) || normalizePhotoWallSize((_a = item.querySelector("[data-size]")) == null ? void 0 : _a.dataset.size);
+    if (manualSize) return manualSize;
+    const img = photoWallImageFromItem(item);
+    return img ? stripPhotoWallSizeFromImage(img) : void 0;
   }
   const photoWallMosaicPatterns = {
     2: ["3x2", "3x2"],
     3: ["2x2", "2x1", "2x1"],
     4: ["2x2", "1x2", "2x1", "1x1"],
     5: ["2x2", "2x1", "1x2", "1x1", "2x1"],
-    6: ["2x2", "1x2", "2x1", "1x1", "1x2", "2x1"],
+    6: ["2x2", "1x2", "2x1", "1x1", "1x1", "2x1"],
     7: ["2x2", "1x2", "1x1", "2x1", "1x1", "1x1", "1x1"],
     8: ["2x2", "1x1", "1x1", "2x1", "1x1", "1x1", "1x1", "1x1"]
   };
   const photoWallMosaicCycle = ["2x2", "1x2", "2x1", "1x1", "1x1", "2x1", "1x2", "1x1"];
-  function inferredMosaicSize(index, count) {
+  const photoWallMosaicFillCycle = ["1x2", "2x1", "1x1", "1x1", "2x1", "1x1", "1x1", "1x2"];
+  function inferredMosaicSize(index, count, avoidHero = false) {
     var _a;
-    const pattern = (_a = photoWallMosaicPatterns[Math.min(count, 8)]) != null ? _a : photoWallMosaicCycle;
+    const pattern = avoidHero ? photoWallMosaicFillCycle : (_a = photoWallMosaicPatterns[Math.min(count, 8)]) != null ? _a : photoWallMosaicCycle;
     return pattern[index % pattern.length];
   }
   function resizeMasonryItem(grid, item) {
@@ -113,7 +131,7 @@
     const span = Math.ceil((itemHeight + rowGap) / (rowHeight + rowGap));
     item.style.gridRowEnd = `span ${span}`;
   }
-  function sizePhotoWallItem(grid, item, layout, index, count) {
+  function sizePhotoWallItem(grid, item, layout, index, count, manualSize, hasManualSizes) {
     var _a;
     item.classList.add("photo-wall__item");
     const img = photoWallImageFromItem(item);
@@ -122,8 +140,7 @@
     cleanupFns.forEach((cleanup2) => cleanup2());
     photoWallCleanup.set(item, []);
     if (layout === "mosaic") {
-      const manualSize = explicitPhotoWallSize(item);
-      const applyMosaicSize = () => setPhotoWallSize(item, manualSize || inferredMosaicSize(index, count));
+      const applyMosaicSize = () => setPhotoWallSize(item, manualSize || inferredMosaicSize(index, count, hasManualSizes));
       if (img.complete) applyMosaicSize();
       else img.addEventListener("load", applyMosaicSize, { once: true });
       return;
@@ -163,7 +180,11 @@
     const items = Array.from(grid.children).filter((child) => {
       return child instanceof HTMLElement && photoWallImageFromItem(child) !== null;
     });
-    items.forEach((item, index) => sizePhotoWallItem(grid, item, layout, index, items.length));
+    const manualSizes = items.map(explicitPhotoWallSize);
+    const hasManualSizes = manualSizes.some(Boolean);
+    items.forEach(
+      (item, index) => sizePhotoWallItem(grid, item, layout, index, items.length, manualSizes[index], hasManualSizes)
+    );
     const pageSize = Number(wall.dataset.pageSize);
     if (!Number.isFinite(pageSize) || pageSize <= 0 || items.length <= pageSize) return;
     let visibleCount = Number(wall.dataset.visibleCount);

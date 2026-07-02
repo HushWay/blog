@@ -103,9 +103,33 @@ function setPhotoWallSize(item: HTMLElement, size: string) {
   item.classList.add(`${photoWallSizeClassPrefix}${size}`)
 }
 
-function explicitPhotoWallSize(item: HTMLElement): string | undefined {
-  const value = item.dataset.size || item.querySelector<HTMLElement>("[data-size]")?.dataset.size
+function normalizePhotoWallSize(value: string | undefined): string | undefined {
   return value && photoWallSizeNames.has(value) ? value : undefined
+}
+
+function photoWallSizeFromText(value: string | null | undefined): string | undefined {
+  const match = value?.match(/(?:^|\s)\|?([123]x[123])\s*$/)
+  return normalizePhotoWallSize(match?.[1])
+}
+
+function stripPhotoWallSizeFromImage(img: HTMLImageElement) {
+  const size = photoWallSizeFromText(img.alt) || photoWallSizeFromText(img.title)
+  if (!size) return undefined
+
+  const markerPattern = /\s*\|?[123]x[123]\s*$/
+  img.alt = img.alt.replace(markerPattern, "").trim()
+  img.title = img.title.replace(markerPattern, "").trim()
+  return size
+}
+
+function explicitPhotoWallSize(item: HTMLElement): string | undefined {
+  const manualSize =
+    normalizePhotoWallSize(item.dataset.size) ||
+    normalizePhotoWallSize(item.querySelector<HTMLElement>("[data-size]")?.dataset.size)
+  if (manualSize) return manualSize
+
+  const img = photoWallImageFromItem(item)
+  return img ? stripPhotoWallSizeFromImage(img) : undefined
 }
 
 const photoWallMosaicPatterns: Record<number, string[]> = {
@@ -113,15 +137,18 @@ const photoWallMosaicPatterns: Record<number, string[]> = {
   3: ["2x2", "2x1", "2x1"],
   4: ["2x2", "1x2", "2x1", "1x1"],
   5: ["2x2", "2x1", "1x2", "1x1", "2x1"],
-  6: ["2x2", "1x2", "2x1", "1x1", "1x2", "2x1"],
+  6: ["2x2", "1x2", "2x1", "1x1", "1x1", "2x1"],
   7: ["2x2", "1x2", "1x1", "2x1", "1x1", "1x1", "1x1"],
   8: ["2x2", "1x1", "1x1", "2x1", "1x1", "1x1", "1x1", "1x1"],
 }
 
 const photoWallMosaicCycle = ["2x2", "1x2", "2x1", "1x1", "1x1", "2x1", "1x2", "1x1"]
+const photoWallMosaicFillCycle = ["1x2", "2x1", "1x1", "1x1", "2x1", "1x1", "1x1", "1x2"]
 
-function inferredMosaicSize(index: number, count: number): string {
-  const pattern = photoWallMosaicPatterns[Math.min(count, 8)] ?? photoWallMosaicCycle
+function inferredMosaicSize(index: number, count: number, avoidHero = false): string {
+  const pattern = avoidHero
+    ? photoWallMosaicFillCycle
+    : (photoWallMosaicPatterns[Math.min(count, 8)] ?? photoWallMosaicCycle)
   return pattern[index % pattern.length]
 }
 
@@ -144,6 +171,8 @@ function sizePhotoWallItem(
   layout: PhotoWallLayout,
   index: number,
   count: number,
+  manualSize: string | undefined,
+  hasManualSizes: boolean,
 ) {
   item.classList.add("photo-wall__item")
 
@@ -155,9 +184,8 @@ function sizePhotoWallItem(
   photoWallCleanup.set(item, [])
 
   if (layout === "mosaic") {
-    const manualSize = explicitPhotoWallSize(item)
     const applyMosaicSize = () =>
-      setPhotoWallSize(item, manualSize || inferredMosaicSize(index, count))
+      setPhotoWallSize(item, manualSize || inferredMosaicSize(index, count, hasManualSizes))
     if (img.complete) applyMosaicSize()
     else img.addEventListener("load", applyMosaicSize, { once: true })
     return
@@ -208,7 +236,12 @@ function initPhotoWall(wall: HTMLElement) {
     return child instanceof HTMLElement && photoWallImageFromItem(child) !== null
   })
 
-  items.forEach((item, index) => sizePhotoWallItem(grid, item, layout, index, items.length))
+  const manualSizes = items.map(explicitPhotoWallSize)
+  const hasManualSizes = manualSizes.some(Boolean)
+
+  items.forEach((item, index) =>
+    sizePhotoWallItem(grid, item, layout, index, items.length, manualSizes[index], hasManualSizes),
+  )
 
   const pageSize = Number(wall.dataset.pageSize)
   if (!Number.isFinite(pageSize) || pageSize <= 0 || items.length <= pageSize) return
