@@ -1,0 +1,260 @@
+.photo-wall {
+  --photo-wall-gap: 3px;
+  --photo-wall-row-height: 150px;
+  --photo-wall-min-col: 118px;
+  --photo-wall-bg: color-mix(in srgb, var(--secondary) 5%, var(--light));
+
+  width: min(1100px, calc(100vw - 2rem));
+  max-width: 100%;
+  margin: 1.35rem auto 2rem;
+}
+
+.photo-wall__grid {
+  display: grid;
+  gap: var(--photo-wall-gap);
+}
+
+.photo-wall[data-layout="masonry"] .photo-wall__grid {
+  grid-template-columns: repeat(auto-fill, minmax(var(--photo-wall-min-col), 1fr));
+  grid-auto-rows: 8px;
+  grid-auto-flow: row dense;
+  align-items: start;
+}
+
+.photo-wall[data-layout="mosaic"] .photo-wall__grid,
+.photo-wall:not([data-layout]) .photo-wall__grid {
+  grid-template-columns: repeat(var(--photo-wall-cols, 6), minmax(0, 1fr));
+  grid-auto-rows: var(--photo-wall-row-height);
+  grid-auto-flow: dense;
+}
+
+.photo-wall__item,
+.photo-wall__grid > a,
+.photo-wall__grid > p,
+.photo-wall__grid > figure,
+.photo-wall__grid > img {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  border-radius: 3px;
+  line-height: 0;
+  background: var(--photo-wall-bg);
+}
+
+.photo-wall__item > a,
+.photo-wall__grid > p > a,
+.photo-wall__grid > figure > a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.photo-wall__item img,
+.photo-wall__grid > a > img,
+.photo-wall__grid > p > img,
+.photo-wall__grid > p > a > img,
+.photo-wall__grid > figure img,
+.photo-wall__grid > img {
+  display: block;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border-radius: 0;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.photo-wall[data-layout="masonry"] .photo-wall__item img,
+.photo-wall[data-layout="masonry"] .photo-wall__grid > p img {
+  height: auto;
+  object-fit: contain;
+}
+
+.photo-wall[data-layout="mosaic"] .photo-wall__item img,
+.photo-wall:not([data-layout]) .photo-wall__item img,
+.photo-wall[data-layout="mosaic"] .photo-wall__grid > a > img,
+.photo-wall[data-layout="mosaic"] .photo-wall__grid > p img,
+.photo-wall[data-layout="mosaic"] .photo-wall__grid > figure img,
+.photo-wall[data-layout="mosaic"] .photo-wall__grid > img,
+.photo-wall:not([data-layout]) .photo-wall__grid > a > img,
+.photo-wall:not([data-layout]) .photo-wall__grid > p img,
+.photo-wall:not([data-layout]) .photo-wall__grid > figure img,
+.photo-wall:not([data-layout]) .photo-wall__grid > img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-wall__item:hover img,
+.photo-wall__grid > a:hover > img,
+.photo-wall__grid > p:hover img,
+.photo-wall__grid > figure:hover img {
+  transform: scale(1.025);
+}
+
+.photo-wall__grid > p > br {
+  display: none;
+}
+
+.photo-wall__size-1x1 {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.photo-wall__size-2x1 {
+  grid-column: span 2;
+  grid-row: span 1;
+}
+
+.photo-wall__size-1x2 {
+  grid-column: span 1;
+  grid-row: span 2;
+}
+
+.photo-wall__size-2x2 {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.photo-wall__size-3x1 {
+  grid-column: span 3;
+  grid-row: span 1;
+}
+
+.photo-wall__size-1x3 {
+  grid-column: span 1;
+  grid-row: span 3;
+}
+
+.photo-wall__size-3x2 {
+  grid-column: span 3;
+  grid-row: span 2;
+}
+
+.photo-wall__size-2x3 {
+  grid-column: span 2;
+  grid-row: span 3;
+}
+
+.photo-wall__load-more {
+  display: flex;
+  justify-content: center;
+  margin: 1.2rem 0 0;
+}
+
+.photo-wall__load-more button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.35rem 1.1rem;
+  border: 1px solid var(--lightgray);
+  border-radius: 999px;
+  background: var(--light);
+  color: var(--darkgray);
+  font: inherit;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.photo-wall__load-more button:hover {
+  border-color: var(--secondary);
+  color: var(--secondary);
+  transform: translateY(-1px);
+}
+
+@media all and (max-width: 800px) {
+  .photo-wall {
+    --photo-wall-min-col: 96px;
+    --photo-wall-row-height: 120px;
+    width: 100%;
+  }
+
+  .photo-wall[data-layout="mosaic"] .photo-wall__grid,
+  .photo-wall:not([data-layout]) .photo-wall__grid {
+    --photo-wall-cols: 4;
+  }
+
+  .photo-wall__size-3x1,
+  .photo-wall__size-3x2 {
+    grid-column: span 2;
+  }
+
+  .photo-wall__size-1x3,
+  .photo-wall__size-2x3 {
+    grid-row: span 2;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .photo-wall {
+    --photo-wall-gap: 2px;
+    --photo-wall-min-col: 31vw;
+    --photo-wall-row-height: 31vw;
+  }
+
+  .photo-wall[data-layout="mosaic"] .photo-wall__grid,
+  .photo-wall:not([data-layout]) .photo-wall__grid {
+    --photo-wall-cols: 3;
+  }
+
+  .photo-wall__size-2x1,
+  .photo-wall__size-3x1 {
+    grid-column: span 2;
+  }
+
+  .photo-wall__size-1x2,
+  .photo-wall__size-1x3 {
+    grid-row: span 2;
+  }
+
+  .photo-wall__size-2x2,
+  .photo-wall__size-2x3,
+  .photo-wall__size-3x2 {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+}
+.photo-wall-preview {
+  position: fixed;
+  z-index: 9999;
+  max-width: min(520px, calc(100vw - 36px));
+  max-height: min(72vh, 620px);
+  padding: 6px;
+  border: 1px solid color-mix(in srgb, var(--lightgray) 55%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--light) 90%, transparent);
+  box-shadow: 0 18px 60px rgb(0 0 0 / 22%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 6px, 0) scale(0.985);
+  transition:
+    opacity 0.14s ease,
+    transform 0.14s ease;
+  backdrop-filter: blur(8px);
+}
+
+.photo-wall-preview[data-visible="true"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.photo-wall-preview[hidden] {
+  display: none;
+}
+
+.photo-wall-preview img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(min(520px, 100vw - 36px) - 12px);
+  max-height: calc(min(72vh, 620px) - 12px);
+  border-radius: 3px;
+  object-fit: contain;
+}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PhotoWall Basic Example</title>
+    <link rel="stylesheet" href="../dist/photo-wall.css" />
+    <style>
+      body {
+        margin: 0;
+        background: #f7f4f1;
+        color: #2c2a27;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+      }
+
+      article {
+        width: min(960px, calc(100vw - 40px));
+        margin: 48px auto 80px;
+      }
+
+      h1 {
+        margin: 0 0 0.5rem;
+        font-size: 2rem;
+      }
+
+      p {
+        line-height: 1.7;
+      }
+    </style>
+  </head>
+  <body>
+    <article>
+      <h1>PhotoWall Basic Example</h1>
+      <p>Consecutive image blocks are promoted into a mosaic photo wall.</p>
+
+      <p><img src="https://picsum.photos/id/106/900/700" alt="Forest hero |2x2" /></p>
+      <p><img src="https://picsum.photos/id/1043/700/950" alt="Tall building |1x2" /></p>
+      <p><img src="https://picsum.photos/id/1039/1100/650" alt="Wide trees |2x1" /></p>
+      <p><img src="https://picsum.photos/id/1040/800/800" alt="Square texture" /></p>
+      <p><img src="https://picsum.photos/id/1056/950/650" alt="Wide river" /></p>
+      <p><img src="https://picsum.photos/id/1067/700/950" alt="Tall detail" /></p>
+
+      <p>Hover an image with a mouse or trackpad to preview it.</p>
+    </article>
+    <script src="../dist/photo-wall.js"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "name": "@xinzhi/photo-wall",
+  "version": "0.1.0",
+  "description": "A portable mosaic photo wall for blogs and static sites.",
+  "type": "module",
+  "private": true,
+  "license": "MIT",
+  "main": "dist/photo-wall.js",
+  "style": "dist/photo-wall.css",
+  "files": [
+    "dist",
+    "src",
+    "examples",
+    "adapters",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "keywords": [
+    "photo-wall",
+    "gallery",
+    "mosaic",
+    "blog",
+    "static-site"
+  ]
+}
