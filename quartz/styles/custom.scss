@@ -224,3 +224,40 @@
     grid-row: span 2;
   }
 }
+.photo-wall-preview {
+  position: fixed;
+  z-index: 9999;
+  max-width: min(520px, calc(100vw - 36px));
+  max-height: min(72vh, 620px);
+  padding: 6px;
+  border: 1px solid color-mix(in srgb, var(--lightgray) 55%, transparent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--light) 90%, transparent);
+  box-shadow: 0 18px 60px rgb(0 0 0 / 22%);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate3d(0, 6px, 0) scale(0.985);
+  transition:
+    opacity 0.14s ease,
+    transform 0.14s ease;
+  backdrop-filter: blur(8px);
+}
+
+.photo-wall-preview[data-visible="true"] {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+}
+
+.photo-wall-preview[hidden] {
+  display: none;
+}
+
+.photo-wall-preview img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: calc(min(520px, 100vw - 36px) - 12px);
+  max-height: calc(min(72vh, 620px) - 12px);
+  border-radius: 3px;
+  object-fit: contain;
+}

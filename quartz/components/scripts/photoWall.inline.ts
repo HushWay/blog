@@ -3,6 +3,9 @@ type PhotoWallLayout = "masonry" | "mosaic"
 const photoWallSizeClassPrefix = "photo-wall__size-"
 const photoWallSizeNames = new Set(["1x1", "2x1", "1x2", "2x2", "3x1", "1x3", "3x2", "2x3"])
 const photoWallCleanup = new WeakMap<HTMLElement, Array<() => void>>()
+let photoWallPreview: HTMLDivElement | null = null
+let photoWallPreviewImage: HTMLImageElement | null = null
+let photoWallPreviewHideTimer: number | undefined
 
 function onPhotoWallCleanup(fn: () => void) {
   if (typeof window.addCleanup === "function") window.addCleanup(fn)
@@ -28,6 +31,80 @@ function photoWallImageFromItem(element: Element): HTMLImageElement | null {
   return null
 }
 
+function photoWallPreviewEnabled() {
+  return window.matchMedia?.("(hover: hover) and (pointer: fine)").matches ?? false
+}
+
+function ensurePhotoWallPreview() {
+  if (photoWallPreview && photoWallPreviewImage) return photoWallPreview
+
+  photoWallPreview = document.createElement("div")
+  photoWallPreview.className = "photo-wall-preview"
+  photoWallPreview.hidden = true
+
+  photoWallPreviewImage = document.createElement("img")
+  photoWallPreviewImage.alt = ""
+  photoWallPreview.appendChild(photoWallPreviewImage)
+
+  document.body.appendChild(photoWallPreview)
+  return photoWallPreview
+}
+
+function positionPhotoWallPreview(event: PointerEvent) {
+  if (!photoWallPreview) return
+
+  const margin = 18
+  const rect = photoWallPreview.getBoundingClientRect()
+  let left = event.clientX + margin
+  let top = event.clientY + margin
+
+  if (left + rect.width > window.innerWidth - margin) left = event.clientX - rect.width - margin
+  if (top + rect.height > window.innerHeight - margin) top = event.clientY - rect.height - margin
+
+  photoWallPreview.style.left = `${Math.max(margin, left)}px`
+  photoWallPreview.style.top = `${Math.max(margin, top)}px`
+}
+
+function attachPhotoWallPreview(item: HTMLElement, img: HTMLImageElement) {
+  const showPreview = (event: PointerEvent) => {
+    if (!photoWallPreviewEnabled()) return
+
+    const preview = ensurePhotoWallPreview()
+    if (!photoWallPreviewImage) return
+
+    if (photoWallPreviewHideTimer) window.clearTimeout(photoWallPreviewHideTimer)
+    photoWallPreviewImage.src = img.currentSrc || img.src
+    photoWallPreviewImage.alt = img.alt
+    preview.hidden = false
+    preview.dataset.visible = "true"
+    positionPhotoWallPreview(event)
+  }
+
+  const movePreview = (event: PointerEvent) => {
+    if (photoWallPreview?.dataset.visible === "true") positionPhotoWallPreview(event)
+  }
+
+  const hidePreview = () => {
+    if (!photoWallPreview) return
+
+    photoWallPreview.dataset.visible = "false"
+    photoWallPreviewHideTimer = window.setTimeout(() => {
+      if (photoWallPreview?.dataset.visible === "false") photoWallPreview.hidden = true
+    }, 140)
+  }
+
+  item.addEventListener("pointerenter", showPreview)
+  item.addEventListener("pointermove", movePreview)
+  item.addEventListener("pointerleave", hidePreview)
+  item.addEventListener("pointercancel", hidePreview)
+
+  return () => {
+    item.removeEventListener("pointerenter", showPreview)
+    item.removeEventListener("pointermove", movePreview)
+    item.removeEventListener("pointerleave", hidePreview)
+    item.removeEventListener("pointercancel", hidePreview)
+  }
+}
 function isPhotoWallCandidate(element: Element): element is HTMLElement {
   if (!(element instanceof HTMLElement)) return false
   if (element.closest(".photo-wall")) return false
@@ -181,7 +258,9 @@ function sizePhotoWallItem(
 
   const cleanupFns: Array<() => void> = photoWallCleanup.get(item) ?? []
   cleanupFns.forEach((cleanup) => cleanup())
-  photoWallCleanup.set(item, [])
+
+  const nextCleanupFns = [attachPhotoWallPreview(item, img)]
+  photoWallCleanup.set(item, nextCleanupFns)
 
   if (layout === "mosaic") {
     const applyMosaicSize = () =>
@@ -207,7 +286,7 @@ function sizePhotoWallItem(
     img.removeEventListener("load", applyMasonrySize)
   }
 
-  photoWallCleanup.set(item, [cleanup])
+  nextCleanupFns.push(cleanup)
   onPhotoWallCleanup(cleanup)
 }
 

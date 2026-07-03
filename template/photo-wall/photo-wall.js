@@ -3,6 +3,9 @@
   const photoWallSizeClassPrefix = "photo-wall__size-";
   const photoWallSizeNames = /* @__PURE__ */ new Set(["1x1", "2x1", "1x2", "2x2", "3x1", "1x3", "3x2", "2x3"]);
   const photoWallCleanup = /* @__PURE__ */ new WeakMap();
+  let photoWallPreview = null;
+  let photoWallPreviewImage = null;
+  let photoWallPreviewHideTimer;
   function onPhotoWallCleanup(fn) {
     if (typeof window.addCleanup === "function") window.addCleanup(fn);
   }
@@ -20,6 +23,65 @@
       }
     }
     return null;
+  }
+  function photoWallPreviewEnabled() {
+    var _a, _b;
+    return (_b = (_a = window.matchMedia) == null ? void 0 : _a.call(window, "(hover: hover) and (pointer: fine)").matches) != null ? _b : false;
+  }
+  function ensurePhotoWallPreview() {
+    if (photoWallPreview && photoWallPreviewImage) return photoWallPreview;
+    photoWallPreview = document.createElement("div");
+    photoWallPreview.className = "photo-wall-preview";
+    photoWallPreview.hidden = true;
+    photoWallPreviewImage = document.createElement("img");
+    photoWallPreviewImage.alt = "";
+    photoWallPreview.appendChild(photoWallPreviewImage);
+    document.body.appendChild(photoWallPreview);
+    return photoWallPreview;
+  }
+  function positionPhotoWallPreview(event) {
+    if (!photoWallPreview) return;
+    const margin = 18;
+    const rect = photoWallPreview.getBoundingClientRect();
+    let left = event.clientX + margin;
+    let top = event.clientY + margin;
+    if (left + rect.width > window.innerWidth - margin) left = event.clientX - rect.width - margin;
+    if (top + rect.height > window.innerHeight - margin) top = event.clientY - rect.height - margin;
+    photoWallPreview.style.left = `${Math.max(margin, left)}px`;
+    photoWallPreview.style.top = `${Math.max(margin, top)}px`;
+  }
+  function attachPhotoWallPreview(item, img) {
+    const showPreview = (event) => {
+      if (!photoWallPreviewEnabled()) return;
+      const preview = ensurePhotoWallPreview();
+      if (!photoWallPreviewImage) return;
+      if (photoWallPreviewHideTimer) window.clearTimeout(photoWallPreviewHideTimer);
+      photoWallPreviewImage.src = img.currentSrc || img.src;
+      photoWallPreviewImage.alt = img.alt;
+      preview.hidden = false;
+      preview.dataset.visible = "true";
+      positionPhotoWallPreview(event);
+    };
+    const movePreview = (event) => {
+      if ((photoWallPreview == null ? void 0 : photoWallPreview.dataset.visible) === "true") positionPhotoWallPreview(event);
+    };
+    const hidePreview = () => {
+      if (!photoWallPreview) return;
+      photoWallPreview.dataset.visible = "false";
+      photoWallPreviewHideTimer = window.setTimeout(() => {
+        if ((photoWallPreview == null ? void 0 : photoWallPreview.dataset.visible) === "false") photoWallPreview.hidden = true;
+      }, 140);
+    };
+    item.addEventListener("pointerenter", showPreview);
+    item.addEventListener("pointermove", movePreview);
+    item.addEventListener("pointerleave", hidePreview);
+    item.addEventListener("pointercancel", hidePreview);
+    return () => {
+      item.removeEventListener("pointerenter", showPreview);
+      item.removeEventListener("pointermove", movePreview);
+      item.removeEventListener("pointerleave", hidePreview);
+      item.removeEventListener("pointercancel", hidePreview);
+    };
   }
   function isPhotoWallCandidate(element) {
     var _a;
@@ -138,7 +200,8 @@
     if (!img) return;
     const cleanupFns = (_a = photoWallCleanup.get(item)) != null ? _a : [];
     cleanupFns.forEach((cleanup2) => cleanup2());
-    photoWallCleanup.set(item, []);
+    const nextCleanupFns = [attachPhotoWallPreview(item, img)];
+    photoWallCleanup.set(item, nextCleanupFns);
     if (layout === "mosaic") {
       const applyMosaicSize = () => setPhotoWallSize(item, manualSize || inferredMosaicSize(index, count, hasManualSizes));
       if (img.complete) applyMosaicSize();
@@ -157,7 +220,7 @@
       resizeObserver.disconnect();
       img.removeEventListener("load", applyMasonrySize);
     };
-    photoWallCleanup.set(item, [cleanup]);
+    nextCleanupFns.push(cleanup);
     onPhotoWallCleanup(cleanup);
   }
   function ensurePhotoWallGrid(wall) {
