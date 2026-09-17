@@ -1,6 +1,7 @@
 ---
 title: windows 窗口折腾小记
 date: 2026-05-26
+aliases: [2026/05/windows 窗口折腾小记]
 draft: false
 ---
 

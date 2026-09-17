@@ -36,10 +36,6 @@ export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
     Component.PageTop(),
     Component.ConditionalRender({
-      component: Component.Breadcrumbs(),
-      condition: (page) => !["index", "about", "archive"].includes(page.fileData.slug ?? ""),
-    }),
-    Component.ConditionalRender({
       component: Component.ArticleTitle(),
       condition: (page) => !["index", "about", "archive"].includes(page.fileData.slug ?? ""),
     }),
@@ -65,7 +61,6 @@ export const defaultContentPageLayout: PageLayout = {
 export const defaultListPageLayout: PageLayout = {
   beforeBody: [
     Component.PageTop(),
-    Component.Breadcrumbs(),
     Component.ArticleTitle(),
     Component.ContentMeta({ showReadingTime: false }),
   ],
