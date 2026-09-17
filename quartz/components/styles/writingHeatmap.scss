@@ -1,9 +1,11 @@
 .writing-heatmap {
-  margin-top: 2rem;
-  padding: 1rem;
+  margin-top: 3rem;
+  padding: 1rem 0;
   border: 1px solid var(--lightgray);
+  border-right: 0;
+  border-left: 0;
   border-radius: 8px;
-  background: color-mix(in srgb, var(--light) 86%, var(--highlight));
+  background: transparent;
 
   &__header,
   &__summary {
@@ -19,7 +21,7 @@
 
   h2 {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1.05rem;
   }
 
   p {

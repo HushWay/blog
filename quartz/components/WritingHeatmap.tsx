@@ -64,7 +64,11 @@ function isDraft(value: unknown): boolean {
 
 function getWritingEntries(allFiles: QuartzComponentProps["allFiles"]): WritingEntry[] {
   return allFiles
-    .filter((page) => page.slug !== "index" && !isDraft(page.frontmatter?.draft))
+    .filter(
+      (page) =>
+        !["index", "about", "archive"].includes(page.slug ?? "") &&
+        !isDraft(page.frontmatter?.draft),
+    )
     .map((page) => {
       const rawDate = page.frontmatter?.date ?? page.frontmatter?.published
       const date = parseWritingDate(rawDate)

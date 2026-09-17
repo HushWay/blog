@@ -1,51 +1,26 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
-import { FileTrieNode } from "./quartz/util/fileTrie"
-
-const sortByPublishedDateAsc = (a: FileTrieNode, b: FileTrieNode) => {
-  if (a.isFolder !== b.isFolder) {
-    return a.isFolder ? -1 : 1
-  }
-
-  if (a.isFolder && b.isFolder) {
-    return a.displayName.localeCompare(b.displayName, undefined, {
-      numeric: true,
-      sensitivity: "base",
-    })
-  }
-
-  // 文件按发表时间正序
-  const aTime = a.data?.date ? new Date(a.data.date).getTime() : Number.NEGATIVE_INFINITY
-  const bTime = b.data?.date ? new Date(b.data.date).getTime() : Number.NEGATIVE_INFINITY
-  const timeDiff = aTime - bTime
-  if (timeDiff !== 0) {
-    return timeDiff
-  }
-
-  // 时间相同或缺失时，按名称稳定排序
-  return a.displayName.localeCompare(b.displayName, undefined, {
-    numeric: true,
-    sensitivity: "base",
-  })
-}
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
   header: [],
   afterBody: [
-    Component.Comments({
-      provider: 'giscus',
-      options: {
-        repo: 'HushWay/blog',
-        repoId: 'R_kgDOQ8xrjA',
-        category: 'Announcements',
-        categoryId: 'DIC_kwDOQ8xrjM4C1JYZ',
-        mapping: 'title',
-        strict: false,
-        reactionsEnabled: true,
-        inputPosition: 'top',
-      }
+    Component.ConditionalRender({
+      component: Component.Comments({
+        provider: "giscus",
+        options: {
+          repo: "HushWay/blog",
+          repoId: "R_kgDOQ8xrjA",
+          category: "Announcements",
+          categoryId: "DIC_kwDOQ8xrjM4C1JYZ",
+          mapping: "title",
+          strict: false,
+          reactionsEnabled: true,
+          inputPosition: "top",
+        },
+      }),
+      condition: (page) => !["index", "archive"].includes(page.fileData.slug ?? ""),
     }),
   ],
   footer: Component.Footer({
@@ -59,37 +34,27 @@ export const sharedPageComponents: SharedLayout = {
 // components for pages that display a single page (e.g. a single note)
 export const defaultContentPageLayout: PageLayout = {
   beforeBody: [
+    Component.PageTop(),
     Component.ConditionalRender({
       component: Component.Breadcrumbs(),
-      condition: (page) => page.fileData.slug !== "index",
+      condition: (page) => !["index", "about", "archive"].includes(page.fileData.slug ?? ""),
     }),
-    Component.ArticleTitle(),
-    Component.ContentMeta({ showReadingTime: false }),
-    Component.TagList(),
-  ],
-  left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-        // { Component: Component.ReaderMode() },
-      ],
+    Component.ConditionalRender({
+      component: Component.ArticleTitle(),
+      condition: (page) => !["index", "about", "archive"].includes(page.fileData.slug ?? ""),
     }),
-    Component.Explorer({
-      title: "博客",
-      folderDefaultState: "open",
-      folderClickBehavior: "link",
-      useSavedState: false,
-      sortFn: sortByPublishedDateAsc,
+    Component.ConditionalRender({
+      component: Component.ContentMeta({ showReadingTime: false }),
+      condition: (page) => !["index", "about", "archive"].includes(page.fileData.slug ?? ""),
+    }),
+    Component.ConditionalRender({
+      component: Component.TagList(),
+      condition: (page) => !["index", "about", "archive"].includes(page.fileData.slug ?? ""),
     }),
   ],
+  left: [],
   right: [
-    Component.TableOfContents()
+    Component.TableOfContents(),
     // Component.Graph(),
     // Component.DesktopOnly(Component.TableOfContents()),
     // Component.Backlinks(),
@@ -98,22 +63,12 @@ export const defaultContentPageLayout: PageLayout = {
 
 // components for pages that display lists of pages  (e.g. tags or folders)
 export const defaultListPageLayout: PageLayout = {
-  beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta({ showReadingTime: false })],
-  left: [
-    Component.PageTitle(),
-    Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-      ],
-    }),
-    Component.Explorer({
-      sortFn: sortByPublishedDateAsc,
-    }),
+  beforeBody: [
+    Component.PageTop(),
+    Component.Breadcrumbs(),
+    Component.ArticleTitle(),
+    Component.ContentMeta({ showReadingTime: false }),
   ],
+  left: [],
   right: [],
 }

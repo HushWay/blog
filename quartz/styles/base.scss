@@ -195,6 +195,7 @@ a {
     column-gap: #{map.get($desktopGrid, columnGap)};
     row-gap: #{map.get($desktopGrid, rowGap)};
     grid-template-areas: #{map.get($desktopGrid, templateAreas)};
+    justify-content: center;
 
     @media all and ($tablet) {
       grid-template-columns: #{map.get($tabletGrid, templateColumns)};
@@ -229,19 +230,7 @@ a {
     }
 
     & .sidebar.left {
-      z-index: 1;
-      grid-area: grid-sidebar-left;
-      flex-direction: column;
-      @media all and ($mobile) {
-        gap: 0;
-        align-items: center;
-        position: initial;
-        display: flex;
-        height: unset;
-        flex-direction: row;
-        padding: 0;
-        padding-top: 2rem;
-      }
+      display: none;
     }
 
     & .sidebar.right {
@@ -263,6 +252,20 @@ a {
           max-height: 24rem;
         }
         & > .toc {
+          display: none;
+        }
+      }
+    }
+
+    &:has(> .sidebar.right:empty) {
+      @media all and ($desktop) {
+        grid-template-columns: minmax(0, #{$pageWidth});
+        grid-template-areas:
+          "grid-header"
+          "grid-center"
+          "grid-footer";
+
+        & > .sidebar.right {
           display: none;
         }
       }
@@ -571,6 +574,11 @@ hr {
   height: 1px;
   border: none;
   background-color: var(--lightgray);
+}
+
+body[data-slug="index"] .center > hr,
+body[data-slug="archive"] .center > hr {
+  display: none;
 }
 
 audio,
