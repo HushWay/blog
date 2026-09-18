@@ -1,27 +1,62 @@
 details.toc {
+  margin: 1.2rem 0 1.65rem;
+  padding: 0.7rem 0.15rem;
+  border-top: 1px solid var(--lightgray);
+  border-bottom: 1px solid var(--lightgray);
+
   & summary {
     cursor: pointer;
+    color: var(--darkgray);
 
     &::marker {
-      color: var(--dark);
+      color: var(--gray);
     }
 
     & > * {
       padding-left: 0.25rem;
       display: inline-block;
       margin: 0;
+      font-size: 0.95rem;
+      font-weight: 500;
     }
   }
 
   & ul {
-    list-style: none;
-    margin: 0.5rem 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.1rem 1.5rem;
+    margin: 0.65rem 0 0;
     padding: 0;
+    list-style: none;
+  }
+
+  & li {
+    margin: 0;
+    line-height: 1.75;
+  }
+
+  & li > a {
+    color: var(--darkgray);
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  & li > a:hover {
+    color: var(--secondary);
   }
 
   @for $i from 1 through 6 {
     & .depth-#{$i} {
-      padding-left: calc(1rem * #{$i});
+      padding-left: calc(0.9rem * #{$i});
+    }
+  }
+
+  @media all and (max-width: 800px) {
+    margin: 1rem 0 1.4rem;
+    padding: 0.6rem 0.1rem;
+
+    & ul {
+      grid-template-columns: 1fr;
     }
   }
 }
